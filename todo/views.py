@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect
 from .models import Item
 
 # Create your views here.
@@ -20,3 +21,4 @@ def add_item(request):
         return redirect('get_todo_list')
         
     return render(request, 'todo/add_item.html')
+
