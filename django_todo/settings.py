@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY','django-insecure-g8^jm57q6#$-ez%q9h%o*h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['HEROKU_HOSTNAME']
+ALLOWED_HOSTS = ['HEROKU_HOSTNAME', 'ckz8780-django-todo-app-atchu-7a26e1137a13.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-atchutchi-hellodjango-rmge0vx1wc1.ws-eu105.gitpod.io',
