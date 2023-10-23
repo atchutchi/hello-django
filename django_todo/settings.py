@@ -17,6 +17,9 @@ if os.path.isfile('env.py'):
     import env
 
 
+development = os.environ.get('DEVELOPMENT', False)
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,9 +31,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY','django-insecure-g8^jm57q6#$-ez%q9h%o*hu8@9jw3yzp!xh@dz7(x&0ayg230i')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = development
 
-ALLOWED_HOSTS = ['HEROKU_HOSTNAME', 'ckz8780-django-todo-app-atchu-7a26e1137a13.herokuapp.com']
+if development:
+    ALLOWED_HOSTS = ['8000-atchutchi-hellodjango-rmge0vx1wc1.ws-eu105.gitpod.io']
+else:
+    ALLOWED_HOSTS = ['HEROKU_HOSTNAME']
+    ALLOWED_HOSTS = ['ckz8780-django-todo-app-atchu-7a26e1137a13.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-atchutchi-hellodjango-rmge0vx1wc1.ws-eu105.gitpod.io',
@@ -82,17 +89,17 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
+if development:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
 
 
 # Password validation
